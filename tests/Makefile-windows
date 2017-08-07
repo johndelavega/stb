@@ -1,0 +1,22 @@
+INCLUDES = -I..
+CFLAGS =  /Zi -DSTB_DIVIDE_TEST
+CPPFLAGS = -DSTB_DIVIDE_TEST
+
+all:
+	$(CC) $(INCLUDES) $(CFLAGS) image_test.c Advapi32.lib
+
+# VS2013 dev command line
+# %comspec% /k ""C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\VsDevCmd.bat""
+
+# 1. rename or copy Makefile Makefile-linux
+# 2. rename or copy Makefile-windows Makefile
+# 3. set/paste VS2013 dev command line as above
+# 3. run nmake from VS2013 dev command line -> image_test.exe
+# 4. run image_test.exe 1.png
+#     should produce 3 files, output-1.*
+#
+# comments
+# Zi = debug
+# RegCreateKeyEx from Advapi32.lib 
+# cl image_test.c /Zi /I .. Advapi32.lib /o go.exe
+# nmake -> image_test.exe

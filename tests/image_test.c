@@ -96,9 +96,10 @@ int main(int argc, char **argv)
          if (data) {
             char fname[512];
             stb_splitpath(fname, argv[i], STB_FILE);
-            stbi_write_png(stb_sprintf("output/%s.png", fname), w, h, 4, data, w*4);
-            stbi_write_bmp(stb_sprintf("output/%s.bmp", fname), w, h, 4, data);
-            stbi_write_tga(stb_sprintf("output/%s.tga", fname), w, h, 4, data);
+            // updated for fopen to work in windows when output folder does not exist - jdv
+            stbi_write_png(stb_sprintf("output-%s.png", fname), w, h, 4, data, w*4);
+            stbi_write_bmp(stb_sprintf("output-%s.bmp", fname), w, h, 4, data);
+            stbi_write_tga(stb_sprintf("output-%s.tga", fname), w, h, 4, data);
             stbi_write_png_to_func(dummy_write,0, w, h, 4, data, w*4);
             stbi_write_bmp_to_func(dummy_write,0, w, h, 4, data);
             stbi_write_tga_to_func(dummy_write,0, w, h, 4, data);
@@ -162,5 +163,8 @@ int main(int argc, char **argv)
       }
       printf("Tested %d files.\n", i);
    }
+
+   printf("(vs2013) v001\n");
+
    return 0;
 }
